@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using shop.web.Data;
+using shop.web.Services;
 
 namespace shop.web.Areas.Admin.Controllers
 {
@@ -13,17 +14,18 @@ namespace shop.web.Areas.Admin.Controllers
     public class ProductController : Controller
     {
         private readonly ApplicationDbContext _context;
+        private readonly IProductService _productService;
 
-        public ProductController(ApplicationDbContext context)
+        public ProductController(ApplicationDbContext context, IProductService productService)
         {
             _context = context;
+            _productService = productService;
         }
 
         // GET: Admin/Product
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
         {
-            var applicationDbContext = _context.Products.Include(p => p.Brand).Include(p => p.Category);
-            return View(await applicationDbContext.ToListAsync());
+            return View(_productService.GetProducts());
         }
 
         // GET: Admin/Product/Details/5
@@ -45,6 +47,20 @@ namespace shop.web.Areas.Admin.Controllers
 
             return View(product);
         }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         // GET: Admin/Product/Create
         public IActionResult Create()
@@ -69,8 +85,8 @@ namespace shop.web.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                _context.Add(product);
-                await _context.SaveChangesAsync();
+                _productService.AddProduct(product);
+
                 return RedirectToAction(nameof(Index));
             }
 
@@ -84,6 +100,18 @@ namespace shop.web.Areas.Admin.Controllers
 
             return View(product);
         }
+
+
+
+
+
+
+
+
+
+
+
+
 
         // GET: Admin/Product/Edit/5
         public async Task<IActionResult> Edit(int? id)

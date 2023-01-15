@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using shop.web.Models;
+using shop.web.Services;
 using System.Diagnostics;
 
 namespace shop.web.Controllers
@@ -7,10 +8,12 @@ namespace shop.web.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly IProductService _productService;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, IProductService productService)
         {
             _logger = logger;
+            _productService = productService;
         }
 
         public IActionResult Index()
@@ -30,6 +33,8 @@ namespace shop.web.Controllers
 
         public IActionResult Shop()
         {
+            var products = _productService.GetProducts();
+
             return View();
         }
 
