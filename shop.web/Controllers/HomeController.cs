@@ -35,7 +35,7 @@ namespace shop.web.Controllers
         {
             var products = _productService.GetProducts();
 
-            return View();
+            return View(products);
         }
 
         public IActionResult Product()
