@@ -19,7 +19,7 @@ namespace shop.web.Services
             _context.SaveChangesAsync();
         }
 
-        public Product GetProduct(int id)
+        public Product? GetProduct(int id)
         {
             return _context.Products.Find(id);
         }
