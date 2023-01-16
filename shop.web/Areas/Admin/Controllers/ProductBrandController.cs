@@ -1,46 +1,42 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using shop.web.Data;
+using shop.web.Services;
 
 namespace shop.web.Areas.Admin.Controllers
 {
     [Area("Admin")]
     public class ProductBrandController : Controller
     {
-        private readonly ApplicationDbContext _context;
+        private readonly IProductBrandService _productBrandService;
 
-        public ProductBrandController(ApplicationDbContext context)
+        public ProductBrandController(IProductBrandService productBrandService)
         {
-            _context = context;
+            _productBrandService = productBrandService;
         }
 
         // GET: Admin/ProductBrand
         public async Task<IActionResult> Index()
         {
-              return _context.ProductBrands != null ? 
-                          View(await _context.ProductBrands.ToListAsync()) :
-                          Problem("Entity set 'ApplicationDbContext.ProductBrands'  is null.");
+            try
+            {
+                return View(await _productBrandService.GetBrands());
+            }
+            catch(Exception ex)
+            {
+                return Problem(ex.Message);
+            }
         }
 
         // GET: Admin/ProductBrand/Details/5
         public async Task<IActionResult> Details(int? id)
         {
-            if (id == null || _context.ProductBrands == null)
-            {
+            if (id == null || !_productBrandService.BrandsExists())
                 return NotFound();
-            }
 
-            var productBrand = await _context.ProductBrands
-                .FirstOrDefaultAsync(m => m.Id == id);
+            var productBrand = await _productBrandService.GetBrandById(id);
             if (productBrand == null)
-            {
                 return NotFound();
-            }
 
             return View(productBrand);
         }
@@ -60,26 +56,24 @@ namespace shop.web.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                _context.Add(productBrand);
-                await _context.SaveChangesAsync();
+                await _productBrandService.AddBrand(productBrand);
+
                 return RedirectToAction(nameof(Index));
             }
+
             return View(productBrand);
         }
 
         // GET: Admin/ProductBrand/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null || _context.ProductBrands == null)
-            {
+            if (id == null || !_productBrandService.BrandsExists())
                 return NotFound();
-            }
 
-            var productBrand = await _context.ProductBrands.FindAsync(id);
+            var productBrand = _productBrandService.Find(id);
             if (productBrand == null)
-            {
                 return NotFound();
-            }
+
             return View(productBrand);
         }
 
@@ -91,47 +85,37 @@ namespace shop.web.Areas.Admin.Controllers
         public async Task<IActionResult> Edit(int id, [Bind("Id,Name")] ProductBrand productBrand)
         {
             if (id != productBrand.Id)
-            {
                 return NotFound();
-            }
 
             if (ModelState.IsValid)
             {
                 try
                 {
-                    _context.Update(productBrand);
-                    await _context.SaveChangesAsync();
+                    await _productBrandService.UpdateBrand(productBrand);
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!ProductBrandExists(productBrand.Id))
-                    {
+                    if (!_productBrandService.ProductBrandExists(productBrand.Id))
                         return NotFound();
-                    }
                     else
-                    {
                         throw;
-                    }
                 }
+
                 return RedirectToAction(nameof(Index));
             }
+
             return View(productBrand);
         }
 
         // GET: Admin/ProductBrand/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null || _context.ProductBrands == null)
-            {
+            if (id == null || !_productBrandService.BrandsExists())
                 return NotFound();
-            }
 
-            var productBrand = await _context.ProductBrands
-                .FirstOrDefaultAsync(m => m.Id == id);
+            var productBrand = _productBrandService.GetBrandById(id);
             if (productBrand == null)
-            {
                 return NotFound();
-            }
 
             return View(productBrand);
         }
@@ -141,23 +125,12 @@ namespace shop.web.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            if (_context.ProductBrands == null)
-            {
-                return Problem("Entity set 'ApplicationDbContext.ProductBrands'  is null.");
-            }
-            var productBrand = await _context.ProductBrands.FindAsync(id);
-            if (productBrand != null)
-            {
-                _context.ProductBrands.Remove(productBrand);
-            }
-            
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
-        }
+            if (!_productBrandService.BrandsExists())
+                return Problem("Entity set 'ApplicationDbContext.ProductBrands' is null.");
 
-        private bool ProductBrandExists(int id)
-        {
-          return (_context.ProductBrands?.Any(e => e.Id == id)).GetValueOrDefault();
+            await _productBrandService.DeleteBrand(id);
+
+            return RedirectToAction(nameof(Index));
         }
     }
 }
