@@ -14,12 +14,16 @@
 
         public Gender Gender { get; set; }
 
-        public string Description { get; set; }
+        public string? Description { get; set; }
 
-        public double Price { get; set; }
+        public double? Price { get; set; }
 
-        public List<Colors> AvailableColors { get; set; }
+        public List<Colors>? AvailableColors { get; set; }
 
         public List<Sizes> AvailableSizes { get; set; }
+
+        public List<string>? Specification { get; set; }
+
+        public DateTime InsertDate { get; set; } = DateTime.Now;
     }
 }

@@ -20,4 +20,8 @@
     <Folder Include="Areas\Admin\Models\" />
   </ItemGroup>
 
+  <ItemGroup>
+	<InternalsVisibleTo Include="$(AssemblyName).test" />
+  </ItemGroup>
+
 </Project>

@@ -23,14 +23,21 @@ namespace shop.web.Data
                 .Property(e => e.AvailableColors)
                 .HasConversion(
                     v => string.Join(",", v.Select(item => (int)item)),
-                    v => v.Split(',', StringSplitOptions.None).Select(item => (Colors)Enum.Parse(typeof(Colors), item)).ToList()
+                    v => v.Split(',', StringSplitOptions.TrimEntries).Select(item => (Colors)Enum.Parse(typeof(Colors), item)).ToList()
                 );
 
             builder.Entity<Product>()
                 .Property(e => e.AvailableSizes)
                 .HasConversion(
                     v => string.Join(",", v.Select(item => (int)item)),
-                    v => v.Split(',', StringSplitOptions.None).Select(item => (Sizes)Enum.Parse(typeof(Sizes), item)).ToList()
+                    v => v.Split(',', StringSplitOptions.TrimEntries).Select(item => (Sizes)Enum.Parse(typeof(Sizes), item)).ToList()
+                );
+
+            builder.Entity<Product>()
+                .Property(e => e.Specification)
+                .HasConversion(
+                    v => string.Join(",", v.Select(item => item)),
+                    v => v.Split(',', StringSplitOptions.TrimEntries).ToList()
                 );
 
             base.OnModelCreating(builder);
