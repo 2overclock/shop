@@ -11,8 +11,8 @@
 <br />
 
 <div class="row">
-    <div class="col-md-5">
-        <form asp-action="Create">
+    <div class="col-md-6">
+        <form method="post" asp-action="Create">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="Name" class="control-label"></label>
@@ -27,88 +27,90 @@
                 <label asp-for="CategoryId" class="control-label"></label>
                 <select asp-for="CategoryId" class="form-control" asp-items="ViewBag.CategoryId"></select>
             </div>
-        </form>
-        <br />
 
 
-        <p>Gender</p>
-        <div class="form-check form-check-inline">
-
-            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
-            <label class="form-check-label" for="inlineRadio1">Male</label>
-        </div>
-        <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
-            <label class="form-check-label" for="inlineRadio2">Female</label>
-        </div>
-        <div class="form-check form-check-inline">
-            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3">
-            <label class="form-check-label" for="inlineRadio3">Unisex</label>
-        </div>
-        <br />
-        <br />
-        <div>
+            <p>Gender</p>
             <div class="form-check form-check-inline">
-                <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
-                <label class="form-check-label" for="inlineCheckbox1">Small</label>
-            </div>
-            <div class="form-check form-check-inline ps-5">
-                <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
-                <label class="form-check-label" for="inlineCheckbox2">Large</label>
+
+                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1">
+                <label class="form-check-label" for="inlineRadio1">Male</label>
             </div>
             <div class="form-check form-check-inline">
-                <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3">
-                <label class="form-check-label" for="inlineCheckbox3">Extra Extra Large</label>
+                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
+                <label class="form-check-label" for="inlineRadio2">Female</label>
             </div>
-        </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio3" value="option3">
+                <label class="form-check-label" for="inlineRadio3">Unisex</label>
+            </div>
+            <br />
+            <br />
+            <div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+                    <label class="form-check-label" for="inlineCheckbox1">Small</label>
+                </div>
+                <div class="form-check form-check-inline ps-5">
+                    <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
+                    <label class="form-check-label" for="inlineCheckbox2">Large</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3">
+                    <label class="form-check-label" for="inlineCheckbox3">Extra Extra Large</label>
+                </div>
+            </div>
 
-        <div class="form-check form-check-inline pe-1">
-            <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option4">
-            <label class="form-check-label" for="inlineCheckbox3">Medium</label>
-        </div>
-        <div class="form-check form-check-inline ps-4">
-            <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option5">
-            <label class="form-check-label" for="inlineCheckbox3">Extra Large</label>
-        </div>
-        <br />
-        <br>
+            <div class="form-check form-check-inline pe-1">
+                <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option4">
+                <label class="form-check-label" for="inlineCheckbox3">Medium</label>
+            </div>
+            <div class="form-check form-check-inline ps-4">
+                <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option5">
+                <label class="form-check-label" for="inlineCheckbox3">Extra Large</label>
+            </div>
+            <br />
+            <br>
 
-        <div class="row">
+
+
             <form>
-                <input class="form-control" type="datetime-local" placeholder="Select date" />
+                <input class="form-control" type="date" placeholder="Select date" />
             </form>
-        </div>
-        <div class="row mt-5">
-            <h3>Event Log</h3>
-            <div id="log" style="max-height: 40vh; overflow-y: auto"></div>
-        </div>
-        <div class="col-6">
-            <div class="form-group">
-                <label asp-for="Description" class="control-label"></label>
-                <input asp-for="Description" class="form-control" />
-                <span asp-validation-for="Description" class="text-danger"></span>
+
+            <div class="row mt-5">
+                <h3>Event Log</h3>
+                <div id="log" style="max-height: 40vh; overflow-y: auto"></div>
             </div>
-            <div class="form-group">
-                <label asp-for="Price" class="control-label"></label>
-                <input asp-for="Price" class="form-control" />
-                <span asp-validation-for="Price" class="text-danger"></span>
+            <div class="col-6">
+                <div class="form-group">
+                    <label asp-for="Description" class="control-label"></label>
+                    <input asp-for="Description" class="form-control" />
+                    <span asp-validation-for="Description" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Price" class="control-label"></label>
+                    <input asp-for="Price" class="form-control" />
+                    <span asp-validation-for="Price" class="text-danger"></span>
+                </div>
+                <!-- ubaci pomoco liste chekboxova -->
+                <div class="form-group">
+                    <label asp-for="AvailableColors" class="control-label"></label>
+                    <input asp-for="AvailableColors" class="form-control" />
+                    <span asp-validation-for="AvailableColors" class="text-danger"></span>
+                </div>
+                <!-- ubaci pomoco liste chekboxova -->
+                <div class="form-group">
+                    <label asp-for="AvailableSizes" class="control-label"></label>
+                    <input asp-for="AvailableSizes" class="form-control" />
+                    <span asp-validation-for="AvailableSizes" class="text-danger"></span>
+                </div>
+                <div class="form-group mt-3">
+                    <a class="btn btn-success" type="submit" asp-area="Admin" asp-controller="Product" asp-action="Create">Create</a>
+                    <a class="btn btn-secondary" asp-action="Index">Back to list</a>
+                </div>
+
             </div>
-            <!-- ubaci pomoco liste chekboxova -->
-            <div class="form-group">
-                <label asp-for="AvailableColors" class="control-label"></label>
-                <input asp-for="AvailableColors" class="form-control" />
-                <span asp-validation-for="AvailableColors" class="text-danger"></span>
-            </div>
-            <!-- ubaci pomoco liste chekboxova -->
-            <div class="form-group">
-                <label asp-for="AvailableSizes" class="control-label"></label>
-                <input asp-for="AvailableSizes" class="form-control" />
-                <span asp-validation-for="AvailableSizes" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </div>
+        </form>
     </div>
 
 
@@ -175,10 +177,6 @@
 
 
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
-
 
 
 @section Scripts {
@@ -186,6 +184,15 @@
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
 }
+
+
+
+
+
+
+
+
+
 
 
 

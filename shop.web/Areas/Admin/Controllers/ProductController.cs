@@ -11,6 +11,7 @@ using shop.web.Services;
 namespace shop.web.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Route("Admin/[controller]/[action]")]
     public class ProductController : Controller
     {
         private readonly ApplicationDbContext _context;
@@ -27,6 +28,7 @@ namespace shop.web.Areas.Admin.Controllers
         {
             return View(_productService.GetProducts());
         }
+
 
         // GET: Admin/Product/Details/5
         public async Task<IActionResult> Details(int? id)
@@ -202,14 +204,14 @@ namespace shop.web.Areas.Admin.Controllers
             {
                 _context.Products.Remove(product);
             }
-            
+
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool ProductExists(int id)
         {
-          return (_context.Products?.Any(e => e.Id == id)).GetValueOrDefault();
+            return (_context.Products?.Any(e => e.Id == id)).GetValueOrDefault();
         }
     }
 }
