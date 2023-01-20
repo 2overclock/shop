@@ -1,19 +1,17 @@
-﻿@model shop.web.Data.Product
+﻿@model Product
 
 @{
     ViewData["Title"] = "Create";
 }
 
-<h1>Create Product</h1>
+<h1 class="mb-3">Create Product</h1>
 
+<form method="post" asp-action="Create">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
-<hr />
-<br />
-
-<div class="row">
-    <div class="col-md-6">
-        <form method="post" asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="row">
+        <div class="col-md-6 mb-3">
+               
             <div class="form-group">
                 <label asp-for="Name" class="control-label"></label>
                 <input asp-for="Name" class="form-control" />
@@ -71,141 +69,20 @@
             <br />
             <br>
 
-
-
-            <form>
-                <input class="form-control" type="date" placeholder="Select date" />
-            </form>
-
-            <div class="row mt-5">
-                <h3>Event Log</h3>
-                <div id="log" style="max-height: 40vh; overflow-y: auto"></div>
-            </div>
-            <div class="col-6">
-                <div class="form-group">
-                    <label asp-for="Description" class="control-label"></label>
-                    <input asp-for="Description" class="form-control" />
-                    <span asp-validation-for="Description" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="Price" class="control-label"></label>
-                    <input asp-for="Price" class="form-control" />
-                    <span asp-validation-for="Price" class="text-danger"></span>
-                </div>
-                <!-- ubaci pomoco liste chekboxova -->
-                <div class="form-group">
-                    <label asp-for="AvailableColors" class="control-label"></label>
-                    <input asp-for="AvailableColors" class="form-control" />
-                    <span asp-validation-for="AvailableColors" class="text-danger"></span>
-                </div>
-                <!-- ubaci pomoco liste chekboxova -->
-                <div class="form-group">
-                    <label asp-for="AvailableSizes" class="control-label"></label>
-                    <input asp-for="AvailableSizes" class="form-control" />
-                    <span asp-validation-for="AvailableSizes" class="text-danger"></span>
-                </div>
-                <div class="form-group mt-3">
-                    <a class="btn btn-success" type="submit" asp-area="Admin" asp-controller="Product" asp-action="Create">Create</a>
-                    <a class="btn btn-secondary" asp-action="Index">Back to list</a>
-                </div>
-
-            </div>
-        </form>
-    </div>
-
-
-
-    <div class="col-6">
-
-        <div class="mb-5">
-            <label for="exampleFormControlTextarea1" class="form-label"></label>
-            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Description"></textarea>
+            <input class="form-control" type="date" placeholder="Select date" />
         </div>
 
-        <div class="mb-5">
-            <input class="col-12" placeholder="Enter price" />
+        <div class="col-6 mb-3">
         </div>
 
-
-        <div>
-            <div class="form-check form-check-inline">
-                <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
-                <label class="form-check-label" for="inlineCheckbox1">Black</label>
-            </div>
-            <div class="form-check form-check-inline ps-5">
-                <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
-                <label class="form-check-label" for="inlineCheckbox2">Blue</label>
-            </div>
-            <div class="form-check form-check-inline">
-                <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3">
-                <label class="form-check-label" for="inlineCheckbox3">Gray</label>
-            </div>
-        </div>
-
-        <div>
-            <div class="form-check form-check-inline pe-3">
-                <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
-                <label class="form-check-label" for="inlineCheckbox1">White</label>
-            </div>
-            <div class="form-check form-check-inline ps-4 pe-2">
-                <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
-                <label class="form-check-label" for="inlineCheckbox2">Red</label>
-            </div>
-            <div class="form-check form-check-inline">
-                <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3">
-                <label class="form-check-label" for="inlineCheckbox3">Orange</label>
-            </div>
-        </div>
-
-        <div class="form-check form-check-inline pe-3">
-            <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option4">
-            <label class="form-check-label" for="inlineCheckbox3">Yellow</label>
-        </div>
-        <div class="form-check form-check-inline ps-4">
-            <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option5">
-            <label class="form-check-label" for="inlineCheckbox3">Green</label>
-        </div>
-
-        <div class="input-group col-6 mt-5">
-            <button class="btn btn-outline-secondary btn-primary m-1" type="button">First spec</button>
-            <button class="btn btn-outline-secondary btn-primary m-1" type="button">Second spec</button>
-            <input type="text" class="form-control" placeholder="" aria-label="Example text with two button addons">
+        <div class="col-12">
+            <button type="submit" class="btn btn-primary">Submit</button>
         </div>
     </div>
-
-</div>
-
-
-
-
+</form>
 
 @section Scripts {
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

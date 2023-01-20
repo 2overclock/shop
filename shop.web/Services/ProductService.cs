@@ -12,11 +12,11 @@ namespace shop.web.Services
             _context = context;
         }
 
-        public void AddProduct(Product product)
+        public async Task<int> AddProduct(Product product)
         {
             _context.Add(product);
 
-            _context.SaveChangesAsync();
+            return await _context.SaveChangesAsync();
         }
 
         public Product? GetProduct(int id)

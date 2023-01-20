@@ -70,7 +70,7 @@ namespace shop.web.Areas.Admin.Controllers
             if (id == null || !_productBrandService.BrandsExists())
                 return NotFound();
 
-            var productBrand = _productBrandService.Find(id);
+            var productBrand = await _productBrandService.FindAsync(id);
             if (productBrand == null)
                 return NotFound();
 
@@ -113,7 +113,7 @@ namespace shop.web.Areas.Admin.Controllers
             if (id == null || !_productBrandService.BrandsExists())
                 return NotFound();
 
-            var productBrand = _productBrandService.GetBrandById(id);
+            var productBrand = await _productBrandService.GetBrandById(id);
             if (productBrand == null)
                 return NotFound();
 

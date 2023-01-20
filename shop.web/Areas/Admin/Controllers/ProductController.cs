@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using shop.web.Areas.Admin.Models;
 using shop.web.Data;
 using shop.web.Services;
 
@@ -69,11 +70,6 @@ namespace shop.web.Areas.Admin.Controllers
         {
             ViewData["BrandId"] = new SelectList(_context.ProductBrands, "Id", "Name");
             ViewData["CategoryId"] = new SelectList(_context.ProductCategories, "Id", "Name");
-            ViewData["GenderId"] = new SelectList(Enum.GetValues(typeof(Gender)).Cast<Gender>().Select(item => new
-            {
-                Id = (int)item,
-                Text = item.ToString()
-            }), "Id", "Text");
 
             return View();
         }
@@ -87,18 +83,13 @@ namespace shop.web.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                _productService.AddProduct(product);
+                await _productService.AddProduct(product);
 
                 return RedirectToAction(nameof(Index));
             }
 
             ViewData["BrandId"] = new SelectList(_context.ProductBrands, "Id", "Id", product.BrandId);
             ViewData["CategoryId"] = new SelectList(_context.ProductCategories, "Id", "Id", product.CategoryId);
-            ViewData["GenderId"] = new SelectList(Enum.GetValues(typeof(Gender)).Cast<Gender>().Select(item => new
-            {
-                Id = (int)item,
-                Text = item.ToString()
-            }), "Id", "Text");
 
             return View(product);
         }

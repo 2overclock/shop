@@ -12,7 +12,7 @@ namespace shop.web.Services
 
         Task<int> AddBrand(ProductBrand productBrand);
 
-        Task<ProductBrand?> Find(int? id);
+        Task<ProductBrand?> FindAsync(int? id);
 
         Task<int> UpdateBrand(ProductBrand productBrand);
 

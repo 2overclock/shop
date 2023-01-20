@@ -26,14 +26,14 @@ namespace shop.web.Services
 
         public async Task<int> DeleteBrand(int? id)
         {
-            var productBrand = await Find(id);
+            var productBrand = await FindAsync(id);
             if (productBrand != null)
                 _context.ProductBrands.Remove(productBrand);
 
             return await _context.SaveChangesAsync();
         }
 
-        public async Task<ProductBrand?> Find(int? id)
+        public async Task<ProductBrand?> FindAsync(int? id)
         {
             return await _context.ProductBrands.FindAsync(id);
         }

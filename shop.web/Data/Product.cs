@@ -7,10 +7,10 @@
         public string Name { get; set; }
 
         public int BrandId { get; set; }
-        public ProductBrand Brand { get; set; }
+        public ProductBrand? Brand { get; set; }
 
         public int CategoryId { get; set; }
-        public ProductCategory Category { get; set; }
+        public ProductCategory? Category { get; set; }
 
         public Gender Gender { get; set; }
 

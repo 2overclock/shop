@@ -8,6 +8,6 @@ namespace shop.web.Services
 
         List<Product> GetProducts();
 
-        void AddProduct(Product product);
+        Task<int> AddProduct(Product product);
     }
 }
