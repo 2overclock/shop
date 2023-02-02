@@ -24,15 +24,15 @@
             <th>
                 @Html.DisplayNameFor(model => model.Gender)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Description)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Price)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.AvailableColors)
-            </th>
+            @*  <th>
+            @Html.DisplayNameFor(model => model.Description)
+            </th>*@
+            @* <th>
+            @Html.DisplayNameFor(model => model.Price)
+            </th>*@
+            @*  <th>
+            @Html.DisplayNameFor(model => model.AvailableColors)
+            </th>*@
             <th>
                 @Html.DisplayNameFor(model => model.AvailableSizes)
             </th>
@@ -46,12 +46,12 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.Name)
                 </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Brand.Id)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Category.Id)
-                </td>
+                @*    <td>
+            @Html.DisplayFor(modelItem => item.Brand.Id)
+            </td>*@
+                @*<td>
+            @Html.DisplayFor(modelItem => item.Category.Id)
+            </td>*@
                 <td>
                     @Html.DisplayFor(modelItem => item.Gender)
                 </td>

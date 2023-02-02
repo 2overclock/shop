@@ -6,12 +6,12 @@
 
 <h1 class="mb-3">Create Product</h1>
 
-<form method="post" asp-action="Create">
+<form asp-controller="Product" method="post" asp-action="Create">
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
     <div class="row">
         <div class="col-md-6 mb-3">
-               
+
             <div class="form-group">
                 <label asp-for="Name" class="control-label"></label>
                 <input asp-for="Name" class="form-control" />
@@ -76,7 +76,8 @@
         </div>
 
         <div class="col-12">
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="submit" value="create" class="btn btn-primary">Submit</button>
+            <a asp-controller="Product" asp-action="Index" class="btn btn-outline-success">Back to list</a>
         </div>
     </div>
 </form>
