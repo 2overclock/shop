@@ -6,40 +6,41 @@
 
 <h1 class="mb-3">Create Product</h1>
 
-<form asp-controller="Product" method="post" asp-action="Create">
+<form asp-controller="Product" asp-action="Create" method="post">
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 
     <div class="row">
         <div class="col-md-6 mb-3">
 
             <div class="form-group">
-                <label asp-for="Name" class="control-label"></label>
-                <input asp-for="Name" class="form-control" />
+                <label asp-for="Name" name="Name" class="control-label"></label>
+                <input asp-for="Name" name="Name" class="form-control" />
                 <span asp-validation-for="Name" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="BrandId" class="control-label"></label>
-                <select asp-for="BrandId" class="form-control" asp-items="ViewBag.BrandId"></select>
+                <label asp-for="BrandId" name="BrandId" class="control-label"></label>
+                <select asp-for="BrandId" name="BrandId" class="form-control" asp-items="ViewBag.BrandId"></select>
             </div>
             <div class="form-group">
-                <label asp-for="CategoryId" class="control-label"></label>
-                <select asp-for="CategoryId" class="form-control" asp-items="ViewBag.CategoryId"></select>
+                <label asp-for="CategoryId" name="CategoryId" class="control-label"></label>
+                <select asp-for="CategoryId" name="CategoryId" class="form-control" asp-items="ViewBag.CategoryId"></select>
             </div>
 
 
             <p>Gender</p>
-            <div class="form-check form-check-inline">
 
-                <input class="form-check-input" type="checkbox" value="Male" name="Male" asp-for="Gender">
+
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" value="@Gender.Male" name="Gender" asp-for="Gender">
                 <label class="form-check-label" asp-for="Gender">Male</label>
 
             </div>
             <div class="form-check form-check-inline">
-                <input class="form-check-input" type="checkbox" value="Female" name="Female" asp-for="Gender">
+                <input class="form-check-input" type="radio" value="@Gender.Female" name="Gender" asp-for="Gender">
                 <label class="form-check-label" asp-for="Gender">Female</label>
             </div>
             <div class="form-check form-check-inline">
-                <input class="form-check-input" type="checkbox" value="Unisex" name="Unisex" asp-for="Gender">
+                <input class="form-check-input" type="radio" value="@Gender.Unisex" name="Gender" asp-for="Gender">
                 <label class="form-check-label" asp-for="Gender">Unisex</label>
             </div>
             <span asp-validation-for="Gender" class="text-danger"></span>
@@ -47,26 +48,26 @@
             <br />
             <div>
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" value="Small" name="Small" asp-for="AvailableSizes">
+                    <input class="form-check-input" type="radio" value="@Sizes.Small" name="AvailableSizes" asp-for="AvailableSizes">
                     <label class="form-check-label" asp-for="AvailableSizes">Small</label>
 
                 </div>
                 <div class="form-check form-check-inline ps-5">
-                    <input class="form-check-input" type="checkbox" value="Large" name="Large" asp-for="AvailableSizes">
+                    <input class="form-check-input" type="radio" value="@Sizes.Large" name="AvailableSizes" asp-for="AvailableSizes">
                     <label class="form-check-label" asp-for="AvailableSizes">Large</label>
                 </div>
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" value="Extra Extra Large" name="Extra Extra Large" asp-for="AvailableSizes">
+                    <input class="form-check-input" type="radio" value="@Sizes.ExtraExtraLarge" name="AvailableSizes" asp-for="AvailableSizes">
                     <label class="form-check-label" asp-for="AvailableSizes">Extra Extra Large</label>
                 </div>
             </div>
 
             <div class="form-check form-check-inline pe-1">
-                <input class="form-check-input" type="checkbox" value="Medium" name="Medium" asp-for="AvailableSizes">
+                <input class="form-check-input" type="radio" value="@Sizes.Medium" name="AvailableSizes" asp-for="AvailableSizes">
                 <label class="form-check-label" asp-for="AvailableSizes">Medium</label>
             </div>
             <div class="form-check form-check-inline ps-4">
-                <input class="form-check-input" type="checkbox" value="Extra Large" name="Extra Large" asp-for="AvailableSizes">
+                <input class="form-check-input" type="radio" value="@Sizes.ExtraLarge" name="AvailableSizes" asp-for="AvailableSizes">
                 <label class="form-check-label" asp-for="AvailableSizes">Extra Large</label>
             </div>
             @* <span asp-validation-for="AvailableSizes" class="text-danger"></span>*@
