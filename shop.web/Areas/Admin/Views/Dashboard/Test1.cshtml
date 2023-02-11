@@ -1,0 +1,81 @@
+﻿@model TestModel
+@{
+    ViewData["Title"] = "Test 1";
+
+    var testEnumValues = (IEnumerable<SelectListItem>)ViewBag.TestEnumValues;
+}
+
+<h1>Test 1</h1>
+<hr/>
+
+<form method="post">
+    <div asp-validation-summary="All" class="text-danger"></div>
+
+    <div class="mb-3">
+        <label for="Title">Title</label>
+        <input class="form-control" type="text" name="Title" id="Title" value="@(Model == null ? "" : Model.Title)" />
+        <span asp-validation-for="Title" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3 form-check">
+        <input class="form-check-input" type="checkbox" id="CheckMe" name="CheckMe" value="true" @Html.Raw(Model == null ? "" : "checked")/>
+        <label class="form-check-label" for="CheckMe">Check me out</label>
+    </div>
+
+    @*<div class="row mb-3">
+        @{
+            var checkAllOfMeItems = Enum.GetValues(typeof(TestEnum)).Cast<TestEnum>().ToList();
+        }
+        @foreach (var item in checkAllOfMeItems)
+        {
+            <div class="col-2 form-check">
+                <input class="form-check-input" type="checkbox" id="CheckMe" name="CheckAllOfMe[@checkAllOfMeItems.IndexOf(item)]" value="true" />
+                <label class="form-check-label" for="CheckMe">Check me out</label>
+            </div>
+        }
+    </div>*@
+
+    <div class="row mb-3">
+        <label>CheckAllOfMe</label>
+        @for (var i = 0; i < Enum.GetValues(typeof(TestEnum)).Length; i++)
+        {
+            var name = "CheckAllOfMe[" + i + "]";
+            var id = "CheckAllOfMe" + i;
+            TestEnum text = (TestEnum)(i + 1);
+            var isChecked = Model != null && Model.CheckAllOfMe != null && Model.CheckAllOfMe.Contains(text); 
+
+            <div class="col-2 form-check">
+                @* Name za bind u model mora da izgleda u formatu za listu IME_PROPERTIJA[INDEX] *@
+                <input class="form-check-input" type="checkbox" id="@id" name="CheckAllOfMe" value="@text.ToString()" @Html.Raw(isChecked ? "checked" : "") />
+                <label class="form-check-label" for="@id">@text.ToString()</label>
+            </div>
+        }
+    </div>
+
+    <div class="row mb-3">
+        <label>TestMe</label>
+        @for (var i = 1; i <Enum.GetValues(typeof(TestEnum)).Length + 1; i++)
+        {
+            var value = (TestEnum)i;
+            var isChecked = Model != null && Model.TestMe == value;
+
+            <div class="col-2 form-check">
+                <input class="form-check-input" type="radio" id="TestMe@((int)value)" name="TestMe" value="@value.ToString()" @Html.Raw(isChecked ? "checked" : "")>
+                <label class="form-check-label" for="TestMe@((int)value)">@value.ToString()</label>
+            </div>
+        }
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="SelectMe"></label>
+        <select class="form-select" asp-for="SelectMe" asp-items="testEnumValues">
+            <option>Select one</option>
+        </select>
+    </div>
+
+    @*<div class="mb-3">
+        <input asp-for="CheckMe" />
+    </div>*@
+   
+    <button class="btn btn-primary" type="submit">Submit</button>
+</form>
