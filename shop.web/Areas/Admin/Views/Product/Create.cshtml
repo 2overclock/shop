@@ -31,17 +31,15 @@
 
 
             <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" value="@Gender.Male" name="Gender" asp-for="Gender">
-                <label class="form-check-label" asp-for="Gender">Male</label>
+
+                <label class="form-check-label"><input class="form-check-input" type="radio" value="@Gender.Male" name="Gender" asp-for="Gender">@Gender.Male</label>
 
             </div>
             <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" value="@Gender.Female" name="Gender" asp-for="Gender">
-                <label class="form-check-label" asp-for="Gender">Female</label>
+                <label class="form-check-label"><input class="form-check-input" type="radio" value="@Gender.Female" name="Gender" asp-for="Gender">@Gender.Female</label>
             </div>
             <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" value="@Gender.Unisex" name="Gender" asp-for="Gender">
-                <label class="form-check-label" asp-for="Gender">Unisex</label>
+                <label class="form-check-label"><input class="form-check-input" type="radio" value="@Gender.Unisex" name="Gender" asp-for="Gender">@Gender.Unisex</label>
             </div>
             <span asp-validation-for="Gender" class="text-danger"></span>
             <br />
