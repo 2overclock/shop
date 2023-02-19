@@ -1,4 +1,6 @@
-﻿namespace shop.web.Data
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace shop.web.Data
 {
     public class Product
     {
@@ -25,6 +27,6 @@
 
         public List<string>? Specification { get; set; }
 
-        public DateTime InsertDate { get; set; } = DateTime.Now;
+        public DateTime InsertDate { get; set; }
     }
 }

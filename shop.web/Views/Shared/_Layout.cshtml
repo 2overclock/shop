@@ -225,6 +225,11 @@
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 
     <script>flatpickr("input[type=datetime-local]", {});</script>
+    <script>
+        $('.datepicker').datepicker({
+            format: 'dd/mm/yyyy',
+            startDate: '-3d'
+        });</script>
     <!-- End Script -->
     @await RenderSectionAsync("Scripts", required: false)
 
