@@ -60,8 +60,8 @@
                 <div class="form-check form-check-inline">
                     @*@foreach (var size in Enum.GetValues(typeof(Sizes)))
                     {
-                        @Html.LabelFor(x => x.AvailableSizes, @size)
-                        @Html.CheckBoxFor(x => x.)
+                    @Html.LabelFor(x => x.AvailableSizes, @size)
+                    @Html.CheckBoxFor(x => x.)
                     }*@
                     <input class="form-check-input" type="checkbox" value="@Sizes.Small" name="AvailableSizes" asp-for="AvailableSizes">
                     <label class="form-check-label" asp-for="AvailableSizes">@Model.AvailableSizes</label>
