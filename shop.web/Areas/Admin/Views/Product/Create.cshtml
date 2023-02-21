@@ -1,4 +1,6 @@
-﻿@model Product
+﻿@using shop.web.Data.Migrations;
+@using shop.web.Areas.Admin.Models;
+@model Product
 
 @{
     ViewData["Title"] = "Create";
@@ -33,39 +35,54 @@
 
 
             <div class="form-check form-check-inline">
-                <label class="form-check-label"><input class="form-check-input" type="radio" value="@Gender.Male" name="Gender" asp-for="Gender">@Gender.Male</label>
+                @*<label class="form-check-label"><input class="form-check-input" type="radio" value="@Gender.Male" name="Gender" asp-for="Gender">@Gender.Male</label>*@
+                @foreach (var gen in Enum.GetValues(typeof(Gender)))
+                {
+                    <div class="form-check-inline">
+                        <label asp-for="Gender">@gen.ToString()</label>
+                        <input asp-for="Gender" type="radio" value="@gen">
+                    </div>
+                    @*@Html.RadioButtonFor(m => m.Gender, gen.ToString())
+                @Html.LabelFor(m => m.Gender, @gen.ToString())*@
+                }
+
+            </div>
+            @*<div class="form-check form-check-inline">
+            <label class="form-check-label"><input class="form-check-input" type="radio" value="@Gender.Female" name="Gender" asp-for="Gender">@Gender.Female</label>
             </div>
             <div class="form-check form-check-inline">
-                <label class="form-check-label"><input class="form-check-input" type="radio" value="@Gender.Female" name="Gender" asp-for="Gender">@Gender.Female</label>
-            </div>
-            <div class="form-check form-check-inline">
-                <label class="form-check-label"><input class="form-check-input" type="radio" value="@Gender.Unisex" name="Gender" asp-for="Gender">@Gender.Unisex</label>
-            </div>
+            <label class="form-check-label"><input class="form-check-input" type="radio" value="@Gender.Unisex" name="Gender" asp-for="Gender">@Gender.Unisex</label>
+            </div>*@
             <span asp-validation-for="Gender" class="text-danger"></span>
             <br />
             <br />
             <div>
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" value="@Sizes.Small" name="AvailableSizes" asp-for="AvailableSizes">
-                    <label class="form-check-label" asp-for="AvailableSizes">Small</label>
+                    @*@foreach (var size in Enum.GetValues(typeof(Sizes)))
+                    {
+                        @Html.LabelFor(x => x.AvailableSizes, @size)
+                        @Html.CheckBoxFor(x => x.)
+                    }*@
+                    <input class="form-check-input" type="checkbox" value="@Sizes.Small" name="AvailableSizes" asp-for="AvailableSizes">
+                    <label class="form-check-label" asp-for="AvailableSizes">@Model.AvailableSizes</label>
 
                 </div>
                 <div class="form-check form-check-inline ps-5">
-                    <input class="form-check-input" type="radio" value="@Sizes.Large" name="AvailableSizes" asp-for="AvailableSizes">
+                    <input class="form-check-input" type="checkbox" value="@Sizes.Large" name="AvailableSizes" asp-for="AvailableSizes">
                     <label class="form-check-label" asp-for="AvailableSizes">Large</label>
                 </div>
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" value="@Sizes.ExtraExtraLarge" name="AvailableSizes" asp-for="AvailableSizes">
+                    <input class="form-check-input" type="checkbox" value="@Sizes.ExtraExtraLarge" name="AvailableSizes" asp-for="AvailableSizes">
                     <label class="form-check-label" asp-for="AvailableSizes">Extra Extra Large</label>
                 </div>
             </div>
 
             <div class="form-check form-check-inline pe-1">
-                <input class="form-check-input" type="radio" value="@Sizes.Medium" name="AvailableSizes" asp-for="AvailableSizes">
+                <input class="form-check-input" type="checkbox" value="@Sizes.Medium" name="AvailableSizes" asp-for="AvailableSizes">
                 <label class="form-check-label" asp-for="AvailableSizes">Medium</label>
             </div>
             <div class="form-check form-check-inline ps-4">
-                <input class="form-check-input" type="radio" value="@Sizes.ExtraLarge" name="AvailableSizes" asp-for="AvailableSizes">
+                <input class="form-check-input" type="checkbox" value="@Sizes.ExtraLarge" name="AvailableSizes" asp-for="AvailableSizes">
                 <label class="form-check-label" asp-for="AvailableSizes">Extra Large</label>
             </div>
             @* <span asp-validation-for="AvailableSizes" class="text-danger"></span>*@
