@@ -25,6 +25,8 @@ namespace shop.web.Data
 
         public List<Sizes> AvailableSizes { get; set; }
 
+        public bool Size { get; set; }
+
         public List<string>? Specification { get; set; }
 
         public DateTime InsertDate { get; set; }

@@ -63,27 +63,27 @@
                     @Html.LabelFor(x => x.AvailableSizes, @size)
                     @Html.CheckBoxFor(x => x.)
                     }*@
-                    <input class="form-check-input" type="checkbox" value="@Sizes.Small" name="AvailableSizes" asp-for="AvailableSizes">
-                    <label class="form-check-label" asp-for="AvailableSizes">@Model.AvailableSizes</label>
+                    <input class="form-check-input" type="checkbox" id="a1" value="@Sizes.Small" name="Size">
+                    <label class="form-check-label" for="a1">AvailableSizes</label>
 
                 </div>
                 <div class="form-check form-check-inline ps-5">
-                    <input class="form-check-input" type="checkbox" value="@Sizes.Large" name="AvailableSizes" asp-for="AvailableSizes">
-                    <label class="form-check-label" asp-for="AvailableSizes">Large</label>
+                    <input class="form-check-input" type="checkbox" id="a2" value="@Sizes.Large" name="Size">
+                    <label class="form-check-label" for="a2">Large</label>
                 </div>
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" value="@Sizes.ExtraExtraLarge" name="AvailableSizes" asp-for="AvailableSizes">
-                    <label class="form-check-label" asp-for="AvailableSizes">Extra Extra Large</label>
+                    <input class="form-check-input" type="checkbox" id="a3" value="@Sizes.ExtraExtraLarge" name="Size">
+                    <label class="form-check-label" for="a3">Extra Extra Large</label>
                 </div>
             </div>
 
             <div class="form-check form-check-inline pe-1">
-                <input class="form-check-input" type="checkbox" value="@Sizes.Medium" name="AvailableSizes" asp-for="AvailableSizes">
-                <label class="form-check-label" asp-for="AvailableSizes">Medium</label>
+                <input class="form-check-input" type="checkbox" id="a4" value="@Sizes.Medium" name="Size">
+                <label class="form-check-label" for="a4">Medium</label>
             </div>
             <div class="form-check form-check-inline ps-4">
-                <input class="form-check-input" type="checkbox" value="@Sizes.ExtraLarge" name="AvailableSizes" asp-for="AvailableSizes">
-                <label class="form-check-label" asp-for="AvailableSizes">Extra Large</label>
+                <input class="form-check-input" type="checkbox" id="a5" value="@Sizes.ExtraLarge" name="Size">
+                <label class="form-check-label" for="a5">Extra Large</label>
             </div>
             @* <span asp-validation-for="AvailableSizes" class="text-danger"></span>*@
             <br />
